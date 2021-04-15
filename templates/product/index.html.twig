@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos produits - La boutique française{% endblock %}
+
+{% block content %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 1140px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .product-link{ color: #6b1f33; }
+</style>
+
+<div class="example-wrapper">
+    <div class="row">
+        <div class="col-md-3">
+            <h2 class="h3">Filtrer</h2>
+            {{ form(form) }}
+        </div>
+        <div class="col-md-9">
+            <div class="text-center text-md-left">
+                <h1 class=" title">Nos produits</h1>
+                <hr class="title-divider ml-md-0">
+
+            </div>
+            <div class="row py-5">
+                {% for product in products %}
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class=" p-3 m-2" >
+                        <a href="{{ path('product',{ slug : product.slug}) }}" class="">
+                            <div class="card-image mx-auto">
+                                <img src="uploads/{{ product.image }}" alt="{{ product.name }}" class="mx-auto img-fluid">
+                            </div>
+                        </a>
+                        <p class="card-title text-uppercase font-weight-bold text-center mt-2"> {{ product.name }}</p>
+                        <p class="d-block text-center">{{ product.subtitle }}</p>
+                        <span class="text-primary mt-n3">{{ (product.price/100)|number_format(2, '.', ',') }} €</span>
+
+                    </div>
+                </div>
+                {% endfor %}
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
