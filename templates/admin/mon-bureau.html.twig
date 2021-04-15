@@ -1,0 +1,23 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+{% block content %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+        .product-link{ color: #6b1f33; }
+    </style>
+
+    <div class="example-wrapper">
+    <div class="row py-5 mx-auto">
+        <div class="col-8">
+           <h1 class="my-5 text-center">Bienvenue sur votre interface d'administration</h1>
+            <hr class="title-divider">
+            <div class="text-center">
+                <a href="{{ path('home')}}">Retour à l'accueil</a>
+            </div>
+
+        </div>
+
+
+    </div>
+
+{% endblock %}

@@ -13,9 +13,7 @@
   <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
 
     <style>
-        .marketing {
-            height: 100% !important;
-        }
+
         .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;
@@ -44,7 +42,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Nos produits<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{ path('products') }}">Nos produits<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Qui sommes nous ?<span class="sr-only">(current)</span></a>
@@ -52,7 +50,9 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Contact<span class="sr-only">(current)</span></a>
                 </li>
-
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('admin') }}">Admin<span class="sr-only">(current)</span></a>
+                </li>
                {# <form class="form-inline mt-2 ml-5 mt-md-0">
                     <input class="form-control mr-sm-2 form-control-sm" type="text" placeholder="Votre recherche" aria-label="Recherche">
                     <button class="btn btn-outline-success  btn-sm my-2 my-sm-0" type="submit">Rechercher</button>
@@ -138,8 +138,8 @@
     </div><!-- /.container -->
 
     <!-- FOOTER -->
-    <footer class="container fixed-bottom">
-        <p class="text-center pt-3 h4"> La boutique 100% made in France</p>
+    <footer class="container-fluid ">
+        <p class="text-center text-black pt-3 h4"> La boutique 100% made in France</p>
 {#        <p class="float-right"><a href="#">Back to top</a></p>#}
         <p class="text-center">&copy; {{ "now" |date('Y') }} La boutique française &middot; </p>
         <p class="text-center mt-n2"><a href="#">Mentions légales</a> &middot; <a href="#">CGV</a></p>
