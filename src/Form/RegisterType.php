@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
 
 class RegisterType extends AbstractType
 {
@@ -19,13 +20,16 @@ class RegisterType extends AbstractType
         $builder
             ->add('firstname', TextType::class, [
                 'label'=> 'Prénom',
+                'constraints' => new Length(null,2,30),
                 'attr'=> [ 'placeholder' => 'Merci de saisir votre prénom']
             ])
             ->add('lastname',TextType::class, [
                 'label'=> 'Nom de famille',
+                'constraints' => new Length(null,2,30),
                 'attr'=> [ 'placeholder' => 'Merci de saisir votre nom de famille']
             ])
             ->add('email', EmailType::class, [
+                'constraints' => new Length(null,null,60),
                 'attr' => ['placeholder' => 'Merci de saisir votre adresse mail']
             ])
             ->add('password', RepeatedType::class, [
@@ -33,9 +37,8 @@ class RegisterType extends AbstractType
                 'invalid_message' => 'les deux mots de passe doivent être identiques',
                 'required' => true,
                 'label'=> 'Mot de passe',
-                'attr'=> [ 'placeholder' => 'Merci de saisir votre mot de passe'],
-                'first_options'=>['label'=>'Mot de passe'],
-                'second_options'=>['label'=>'Confirmation du mot de passe']
+                'first_options'=>['label'=>'Mot de passe','attr' => ['placeholder' => 'Merci de saisir votre mot de passe']],
+                'second_options'=>['label'=>'Confirmation du mot de passe', 'attr' => ['placeholder' => 'Merci de confirmer votre mot de passe']]
             ])
 
 

@@ -45,15 +45,24 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="/">Accueil<span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('register') }}">Inscription<span class="sr-only">(current)</span></a>
-                </li>
+
+                <form class="form-inline mt-2 ml-5 mt-md-0">
+                    <input class="form-control mr-sm-2 form-control-sm" type="text" placeholder="Votre recherche" aria-label="Recherche">
+                    <button class="btn btn-outline-success  btn-sm my-2 my-sm-0" type="submit">Rechercher</button>
+                </form>
 
             </ul>
-            <form class="form-inline mt-2 mt-md-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Votre recherche" aria-label="Recherche">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
-            </form>
+
+            {% if not app.user %}
+
+                <a class="mr-2" href="{{ path('register') }}">Inscription<span class="sr-only">(current)</span></a>
+                |
+                <a class="ml-2" href="{{ path('app_login') }}">Connexion<span class="sr-only">(current)</span></a>
+            {% else  %}
+                <a class="mr-2" href="{{ path('account') }}">Mon compte <span class="sr-only">(current)</span></a> |
+                <a class="ml-2" href="{{ path('app_logout') }}">Déconnexion <span class="sr-only">(current)</span></a>
+
+            {% endif %}
         </div>
     </nav>
 </header>
@@ -120,7 +129,7 @@
     </div><!-- /.container -->
 
     <!-- FOOTER -->
-    <footer class="container">
+    <footer class="container fixed-bottom">
         <p class="float-right"><a href="#">Back to top</a></p>
         <p>&copy; 2017-2020 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
     </footer>
