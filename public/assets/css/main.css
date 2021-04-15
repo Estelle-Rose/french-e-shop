@@ -1,0 +1,11 @@
+.navbar-item_custom, .navbar-item_custom a {
+    color: #fff;
+}
+
+a:hover {
+    text-decoration: none !important;
+    color: #34ce57 !important;
+}
+footer {
+    background-color: #fff !important;
+}
