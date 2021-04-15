@@ -8,6 +8,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -39,6 +40,10 @@ class RegisterType extends AbstractType
                 'label'=> 'Mot de passe',
                 'first_options'=>['label'=>'Mot de passe','attr' => ['placeholder' => 'Merci de saisir votre mot de passe']],
                 'second_options'=>['label'=>'Confirmation du mot de passe', 'attr' => ['placeholder' => 'Merci de confirmer votre mot de passe']]
+            ])
+            ->add('submit', SubmitType::class, [
+                'label' => 'S\'inscrire',
+                'attr' => ['class' => 'btn-sm btn btn-primary ']
             ])
 
 

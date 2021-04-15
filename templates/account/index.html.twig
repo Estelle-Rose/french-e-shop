@@ -13,7 +13,7 @@
     <p class="text-center">Bienvenue dans votre compte {{ app.user.firstname}} !<br/>
     C'est dans cet espace que vous pouvez gérer vos informations personnelles</p>
     <hr>
-    - Modifier mon mot de passe <br/>
+    <a href="{{ path('account_password') }}" class="">- Modifier mon mot de passe</a>  <br/>
     - Ajouter mes adresses <br/>
     - Mes commandes <br/>
 </div>
