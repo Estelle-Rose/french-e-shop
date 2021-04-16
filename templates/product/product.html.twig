@@ -30,7 +30,7 @@
 
                         <div class="d-flex justify-content-around">
                         <span class=" text-primary">{{ (product.price/100)|number_format(2, '.', ',') }} €</span>
-                          <a href="#" class="btn btn-primary btn-sm">Ajouter au panier</a>
+                          <a href="{{ path('add_to_cart', {'id': product.id}) }}" class="btn btn-primary btn-sm">Ajouter au panier</a>
 
                         </div>
                     </div>

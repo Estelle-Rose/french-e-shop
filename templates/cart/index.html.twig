@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre panier - La boutique française{% endblock %}
+
+{% block content %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 1140px; min-height: 80vh; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1 class="my-5">Votre panier</h1>
+    <div class="row pb-5">
+        <div class="col-12">
+            <p class="text-center">
+                Retrouvez l'ensemble des produits que vous avez choisi :
+            </p>
+                <table class="table">
+                    <thead>
+                    <tr>
+
+                        <th scope="col">Produit</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Quantité</th>
+                        <th scope="col">Prix</th>
+                        <th scope="col">Total</th>
+
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {%  set total = null %}
+                  {% for item in cart %}
+
+                    <tr>
+
+                        <th>{{ item.product.name }}<br>
+                            <small>{{ item.product.subtitle }}</small>
+
+                        </th>
+                        <td>
+                            <img src="/uploads/{{ item.product.image }}" alt="{{ item.product.name }}" class="img-thumbnail" style="width:80px;">
+                        </td>
+                        <td class="text-center">{{ item.quantity }}</td>
+                        <td>{{ (item.product.price/100) | number_format(2,',','.') }} €</td>
+                        <td>{{ (item.product.price/100) * item.quantity }} €</td>
+
+                    </tr>
+                    {% set total= total + (item.product.price/100) * item.quantity %}
+                     {% endfor %}
+                    </tbody>
+                </table>
+
+        </div>
+        <div class="col-12 text-right pb-5">
+            <p> <strong>Nombre de produits : {{ cart|length }}</strong></p>
+            <p><strong>Total de la commande : {{ total | number_format(2,',','.') }} €</strong></p>
+            <a href="" class="btn btn-success">Valider mon Panier</a>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
