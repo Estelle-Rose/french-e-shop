@@ -15,7 +15,8 @@
             <p class="text-center">
                 Retrouvez l'ensemble des produits que vous avez choisi :
             </p>
-                <table class="table">
+            <div class="table-responsive mx-auto">
+                <table class="table ">
                     <thead>
                     <tr>
 
@@ -24,6 +25,7 @@
                         <th scope="col">Quantité</th>
                         <th scope="col">Prix</th>
                         <th scope="col">Total</th>
+                        <th scope="col">Supprimer</th>
 
 
                     </tr>
@@ -44,6 +46,13 @@
                         <td class="text-center">{{ item.quantity }}</td>
                         <td>{{ (item.product.price/100) | number_format(2,',','.') }} €</td>
                         <td>{{ (item.product.price/100) * item.quantity }} €</td>
+                        <td class="text-center">
+
+                                <a href="{{ path('remove_product', {'id': item.product.id}) }}" class="btn  btn-sm btn-danger">
+                                     <img src="{{ asset('assets/img/delete.png') }}" alt="icone poubelle" height="18px">
+                                </a>
+
+                        </td>
 
                     </tr>
                     {% set total= total + (item.product.price/100) * item.quantity %}
@@ -51,8 +60,10 @@
                     </tbody>
                 </table>
 
+            </div>
+
         </div>
-        <div class="col-12 text-right pb-5">
+        <div class="col-12 text-center text-md-right pb-5">
             <p> <strong>Nombre de produits : {{ cart|length }}</strong></p>
             <p><strong>Total de la commande : {{ total | number_format(2,',','.') }} €</strong></p>
             <a href="" class="btn btn-success">Valider mon Panier</a>

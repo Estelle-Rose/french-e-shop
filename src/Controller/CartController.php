@@ -4,7 +4,7 @@ namespace App\Controller;
 
 
 use App\Classes\Cart;
-use App\Entity\Product;
+
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,6 +35,14 @@ class CartController extends AbstractController
     public function add( Cart $cart, $id): Response
     {
         $cart->add($id);
+        return $this->redirectToRoute('cart');
+    }
+    /**
+     * @Route("/mon-panier/remove/{id}", name="remove_product")
+     */
+    public function removeProduct( Cart $cart, $id): Response
+    {
+        $cart->remove($id);
         return $this->redirectToRoute('cart');
     }
     /**

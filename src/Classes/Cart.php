@@ -27,6 +27,14 @@ class Cart
     {
         $this->session->remove('cart');
     }
+    public function remove($id)
+    {
+        $cart = $this->session->get('cart',[]);
+        unset($cart[$id]);
+        $this->session->set('cart',$cart);
+        return  $this->session->set('cart',$cart);;
+
+    }
     public function get()
     {
         return $this->session->get('cart');
