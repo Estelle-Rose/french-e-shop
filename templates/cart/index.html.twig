@@ -9,9 +9,13 @@
 </style>
 
 <div class="example-wrapper">
-    <h1 class="my-5">Votre panier</h1>
+
+    <h1 class="my-5 text-center">Mon panier </h1>
     <div class="row pb-5">
         <div class="col-12">
+
+
+    {% if cart | length > 0 %}
             <p class="text-center">
                 Retrouvez l'ensemble des produits que vous avez choisi :
             </p>
@@ -43,7 +47,15 @@
                         <td>
                             <img src="/uploads/{{ item.product.image }}" alt="{{ item.product.name }}" class="img-thumbnail" style="width:80px;">
                         </td>
-                        <td class="text-center">{{ item.quantity }}</td>
+                        <td class="text-center">
+                            <a href="{{ path('decrease_quantity', {'id': item.product.id}) }}">
+                                <img src="{{ asset('assets/img/minus.png') }}" alt="icone signe moins" height="12px" class="pr-1">
+                            </a>
+                            {{ item.quantity }}
+                            <a href="{{ path('add_to_cart', {'id': item.product.id}) }}">
+                                <img src="{{ asset('assets/img/add.png') }}" alt="icone signe plus" height="12px"  class="pl-1">
+                            </a>
+                           </td>
                         <td>{{ (item.product.price/100) | number_format(2,',','.') }} €</td>
                         <td>{{ (item.product.price/100) * item.quantity }} €</td>
                         <td class="text-center">
@@ -59,6 +71,9 @@
                      {% endfor %}
                     </tbody>
                 </table>
+                    <div class="text-right my-3">
+                        <a href="{{ path('delete_cart') }}" class="btn  btn-danger" onclick="return confirm('Voulez-vous vraiment vider votre panier')">Vider mon panier</a>
+                    </div>
 
             </div>
 
@@ -69,6 +84,10 @@
             <a href="" class="btn btn-success">Valider mon Panier</a>
 
         </div>
+    {% else %}
+        <hr>
+        <strong>Votre panier est vide.</strong>
+    {% endif %}
     </div>
 </div>
 {% endblock %}
