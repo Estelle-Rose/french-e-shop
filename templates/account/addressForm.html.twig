@@ -9,14 +9,11 @@
     </style>
 
     <div class="example-wrapper">
-        <div class="row">
-             {% if message %}
+        <div class="row ">
+
             <div class="col-12">
-                <div class="alert alert-success">{{ message }}</div>
-            </div>
-            {% endif %}
-            <div class="col-12">
-                <h1 class="my-3">Ma nouvelle adresse</h1>
+                <h1 class="">Gérer mes adresses</h1>
+                <a href="{{ path('address') }}" class="pb-2 d-block">Retour</a>
                 {{ form_start(form) }}
                 <div class="row">
                     <div class="col-12">
@@ -46,7 +43,7 @@
                     <div class="col-md-6">
                         {{ form_row(form.phone)  }}
                     </div>
-                    <div class="col-12 text-center">
+                    <div class="col-12 mb-5 text-center">
                         {{ form_row(form.submit)  }}
                     </div>
                 </div>
