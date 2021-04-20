@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Erreur de paiement - La boutique française{% endblock %}
+
+{% block content %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; min-height:80vh; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    <div class="example-wrapper">
+        <h1 class="h3">Erreur de paiement</h1>
+        <hr>
+        <p class="">Bonjour <strong>{{ order.user.firstname}} {{ order.user.lastname}} </strong></p>
+        <p> Votre paiement a échoué pour votre commande n° <strong>{{ order.reference }}</strong></p>
+        <p>Une confirmation d'erreur vient de vous être envoyée par mail à l'adresse suivante : <strong>{{ order.user.email }}</strong></p>
+        <hr>
+
+        <a href="{{ path('order') }}">Repasser ma commande</a>
+
+    </div>
+{% endblock %}
