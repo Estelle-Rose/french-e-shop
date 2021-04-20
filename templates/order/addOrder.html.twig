@@ -53,7 +53,7 @@
                 <p>Sous-total : <strong>{{ total | number_format(2,',',',')  }} €</strong></p>
                 <p>Frais de livraison : <strong>{{ order.carrierPrice|number_format(2,',',',') }} €</strong></p>
                 <hr>
-                <p>Total à payer= <strong>{{ (total + order.carrierPrice) |number_format(2,',',',')  }} €</strong></p>
+                <p>Total à payer : <strong>{{ (total + order.carrierPrice) |number_format(2,',',',')  }} €</strong></p>
                 <a  class="btn btn-block btn-success" id="checkout-button">Payer</a>
             </div>
         </div>
@@ -69,14 +69,19 @@
     var stripe = Stripe("pk_test_51IiFprEEBo8LwIZvoeE4AUNg8Qn0aVws1ILDe5pTLMdlcvj5CGyuGX5qYlVB9731g4WlZykDnlZSuGLQvTnEdWVG00YFysy5q3");
     var checkoutButton = document.getElementById("checkout-button");
     checkoutButton.addEventListener("click", function () {
-        fetch("/commande/create-session", {
+        fetch("/commande/create-session/{{ reference }}", {
             method: "POST",
         })
             .then(function (response) {
                 return response.json();
             })
             .then(function (session) {
+                if(session.error == 'order') {
+                    window.location.replace('{{ path('order') }}');
+                } else {
                 return stripe.redirectToCheckout({ sessionId: session.id });
+
+                }
             })
             .then(function (result) {
                 // If redirectToCheckout fails due to a browser or network
