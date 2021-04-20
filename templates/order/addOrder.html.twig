@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Valider ma commande - La boutique française{% endblock %}
+
+{% block content %}
+    <style>
+        .example-wrapper { margin: 5em auto; max-width: 1140px; min-height: 90vh; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    <div class="example-wrapper">
+        <h1 class="h3 ">Mon récapitulatif de commande</h1>
+        <p>Vérifiez vos informations avant de procéder au paiement</p>
+        <hr>
+        <div class="row">
+            <div class="col-md-6">
+                <p class="font-weight-bold">Mon adresse de livraison : </p>
+                <div class="form-check">{{ address |raw}}</div>
+                <hr>
+                <p class="font-weight-bold">Mon transporteur : </p>
+                <div class="form-check">{{ carrier.name }} <br> {{ carrier.description }} <br> {{ order.carrierPrice|number_format(2,',',',') }} €</div>
+
+
+            </div>
+
+
+            <div class="col-md-6 mt-2 mt-md-0 mb-3">
+                <p class="font-weight-bold"> Ma commande :</p>
+                <div class="order-recap">
+                    {% set total = 0 %}
+                    {% for item in cart %}
+                        <div class="row">
+                            <div class="col-2 my-auto">
+                                <img src="/uploads/{{ item.product.image}}" alt="" height="50px" class="img-order">
+                            </div>
+                            <div class="col-7 my-auto">
+                                <p>{{ item.product.name }} <br>
+                                    <small>{{ item.product.subtitle }}</small><br>
+                                    x {{ item.quantity }}
+                                </p>
+
+                            </div>
+                            <div class="col-3 my-auto">
+                                <p>{{ (item.quantity*item.product.price/100)|number_format(2,',',',') }} €</p>
+                            </div>
+                        {% set total = total + (item.quantity*item.product.price/100) %}
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+            <div class="col-md-6 offset-md-6 text-right  mb-5">
+                <p>Sous-total : <strong>{{ total | number_format(2,',',',')  }} €</strong></p>
+                <p>Frais de livraison : <strong>{{ order.carrierPrice|number_format(2,',',',') }} €</strong></p>
+                <hr>
+                <p>Total à payer= <strong>{{ (total + order.carrierPrice) |number_format(2,',',',')  }} €</strong></p>
+                <a href="" class="btn btn-block btn-success">Payer</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

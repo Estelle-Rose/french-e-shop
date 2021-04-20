@@ -13,6 +13,9 @@ body {
 .lead {
     font-size: 1rem !important;
 }
+small {
+    font-size: 13px !important;
+}
 footer {
     position: absolute !important;
     bottom: 0 !important;
@@ -25,4 +28,18 @@ footer {
     width: 40px !important;
     margin-top: -5px;
     border-top: 3px solid #aa1111 !important;
+}
+.form-check {
+    background-color: #f4f8ff !important;
+    padding: 1em 40px!important;
+    margin-top: 1em;
+}
+.order-recap {
+    background-color: #f4f8ff;
+    padding: 1em;
+    margin-top: 1.4em;
+}
+.img-order {
+    border-radius: 7px;
+    border: #b9d9eb solid 1px;
 }
