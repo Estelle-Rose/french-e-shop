@@ -42,7 +42,10 @@ class OrderDetails
      * @ORM\Column(type="float")
      */
     private $total;
-
+    public function __toString()
+    {
+        return $this->product.' x '.$this->quantity;
+    }
     public function getId(): ?int
     {
         return $this->id;

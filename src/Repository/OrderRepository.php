@@ -20,6 +20,21 @@ class OrderRepository extends ServiceEntityRepository
     }
 
     // /**
+    //  * Permet d'afficher les commandes dan sle compte de l'utilisateur
+    //  */
+
+    public function findSuccessOrders($user)
+    {
+
+    return $this->createQueryBuilder('o')
+        ->andWhere('o.isPaid =1') // afficher les commandes payées
+        ->andWhere('o.user = :user') // les commandes du user connecté uniquement
+        ->setParameter('user',$user)
+        ->orderBy('o.id', 'DESC')
+        ->getQuery()
+        ->getResult();
+    }
+    // /**
     //  * @return Order[] Returns an array of Order objects
     //  */
     /*

@@ -13,8 +13,8 @@
     <p class="text-center">Bienvenue dans votre compte {{ app.user.firstname}} !<br/>
     C'est dans cet espace que vous pouvez gérer vos informations personnelles</p>
     <hr>
+    <a href="{{ path('account_order') }}">- Mes commandes</a> <br/>
     <a href="{{ path('address') }}">- Gérer mes adresses</a> <br/>
-    - Mes commandes <br/>
     <a href="{{ path('account_password') }}" class="">- Modifier mon mot de passe</a>  <br/>
 </div>
 {% endblock %}

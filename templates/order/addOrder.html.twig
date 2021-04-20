@@ -18,7 +18,7 @@
                 <div class="form-check">{{ address |raw}}</div>
                 <hr>
                 <p class="font-weight-bold">Mon transporteur : </p>
-                <div class="form-check">{{ carrier.name }} <br> {{ carrier.description }} <br> {{ order.carrierPrice|number_format(2,',',',') }} €</div>
+                <div class="form-check">{{ carrier.name }} <br> {{ carrier.description }} <br> {{ (carrier.price/100)|number_format(2,',',',') }} €</div>
 
 
             </div>
@@ -51,9 +51,9 @@
             </div>
             <div class="col-md-6 offset-md-6 text-right  mb-5">
                 <p>Sous-total : <strong>{{ total | number_format(2,',',',')  }} €</strong></p>
-                <p>Frais de livraison : <strong>{{ order.carrierPrice|number_format(2,',',',') }} €</strong></p>
+                <p>Frais de livraison : <strong>{{ (order.carrierPrice/100)|number_format(2,',',',') }} €</strong></p>
                 <hr>
-                <p>Total à payer : <strong>{{ (total + order.carrierPrice) |number_format(2,',',',')  }} €</strong></p>
+                <p>Total à payer : <strong>{{ (total + order.carrierPrice/100) |number_format(2,',',',')  }} €</strong></p>
                 <a  class="btn btn-block btn-success" id="checkout-button">Payer</a>
             </div>
         </div>
