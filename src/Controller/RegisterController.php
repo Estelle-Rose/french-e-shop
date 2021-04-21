@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classes\MailJet;
 use App\Entity\User;
 use App\Form\RegisterType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -19,18 +20,29 @@ class RegisterController extends AbstractController
     public function index(Request $request, EntityManagerInterface $em, UserPasswordEncoderInterface $userPasswordEncoder): Response
 
     {
+        $notification = null;
         $user = new User();
         $form = $this->createForm(RegisterType::class, $user);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
-        $password = $userPasswordEncoder->encodePassword($user, $user->getPassword());
-        $user->setPassword($password);
-       $em->persist($user);
-       $em->flush();
+            $search_email = $em->getRepository(User::class)->findOneByEmail($user->getEmail());
+            if(!$search_email) {
+                $password = $userPasswordEncoder->encodePassword($user, $user->getPassword());
+                $user->setPassword($password);
+                $em->persist($user);
+                $em->flush();
+                $notification = 'Votre inscription est bien enregistrée. Vous pouvez vous connecter pour accéder à votre compte.';
+                $mail = new MailJet();
+                $content = 'Bonjour '.$user->getFullname().', votre inscription a bien été enregistrée';
+                $mail->send($user->getEmail(), $user->getFullname(),'Bienvenue à la boutique française', $content);
+            } else {
+                $notification = 'Cette adresse mail est déjà utilisée';
+            }
 
         }
         return $this->render('register/index.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'notification' => $notification
         ]);
     }
 }

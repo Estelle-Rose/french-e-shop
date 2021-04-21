@@ -12,6 +12,10 @@
     <div class="row pt-2 pb-5 mx-auto">
         <div class="col-md-8 mb-5 pb-5 mx-auto">
             <h1 class="h3 mb-3">S'inscrire</h1>
+            {% if notification %}
+                <div class="alert alert-info">{{ notification }}</div>
+                <hr>
+            {% endif %}
             <div class="card p-3 mx-auto " style="width:35rem;">
                 {{ form_start(form) }}
                 <div class="form-group ">
