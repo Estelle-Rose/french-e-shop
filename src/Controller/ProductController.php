@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Classes\Search;
+use App\Entity\Product;
 use App\Form\SearchType;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -38,11 +39,13 @@ class ProductController extends AbstractController
     public function getOneProduct(ProductRepository $repository, $slug): Response
     {
         $product = $repository->findOneBySlug($slug);
+        $products = $repository->findByIsBest(1);
         if(!$product) {
             return $this->redirectToRoute('products');
         }
         return $this->render('product/product.html.twig', [
-            'product' => $product
+            'product' => $product,
+            'products' => $products
         ]);
     }
 }

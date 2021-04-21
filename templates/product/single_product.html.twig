@@ -1,0 +1,11 @@
+<div class=" p-3 m-2 text-center" >
+    <a href="{{ path('product',{ slug : product.slug}) }}" class="">
+        <div class="card-image mx-auto">
+            <img src="/uploads/{{ product.image }}" alt="{{ product.name }}" class="mx-auto img-fluid">
+        </div>
+    </a>
+    <p class="card-title text-uppercase font-weight-bold text-center mt-2"> {{ product.name }}</p>
+    <p class="d-block text-center">{{ product.subtitle }}</p>
+    <span class=" text-primary mt-n3">{{ (product.price/100)|number_format(2, '.', ',') }} €</span>
+
+</div>

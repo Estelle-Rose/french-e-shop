@@ -4,7 +4,7 @@
 
 {% block content %}
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 1140px; width: 95%; height: 90vh; font: 18px/1.5 sans-serif; }
+    .example-wrapper { margin: 1em auto 5em auto; max-width: 1140px; width: 95%;  font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 
 </style>
@@ -44,6 +44,18 @@
 
 
 
+    </div>
+    <hr>
+    <div class="row mb-5 pb-5">
+        <div class="col-12">
+            <h2 class="text-center">Notre sélection</h2>
+
+        </div>
+        {% for product in products %}
+            <div class="col-lg-3">
+                {% include 'product/single_product.html.twig' %}
+            </div><!-- /.col-lg-4 -->
+        {% endfor %}
     </div>
 </div>
 {% endblock %}
