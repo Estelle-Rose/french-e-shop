@@ -43,3 +43,8 @@ footer {
     border-radius: 7px;
     border: #b9d9eb solid 1px;
 }
+
+/*easy admin*/
+.page-actions a {
+    margin-right: 1em !important;
+}

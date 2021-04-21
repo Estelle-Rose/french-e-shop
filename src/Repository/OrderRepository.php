@@ -27,7 +27,7 @@ class OrderRepository extends ServiceEntityRepository
     {
 
     return $this->createQueryBuilder('o')
-        ->andWhere('o.isPaid =1') // afficher les commandes payées
+        ->andWhere('o.state > 0') // afficher les commandes payées
         ->andWhere('o.user = :user') // les commandes du user connecté uniquement
         ->setParameter('user',$user)
         ->orderBy('o.id', 'DESC')

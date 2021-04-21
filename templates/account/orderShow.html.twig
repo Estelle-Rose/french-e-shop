@@ -18,6 +18,14 @@
         <div class="col-md-12">
             <p>     <strong>Commande passée le : </strong>{{ order.createdAt | date('d/m/Y') }}</p>
             <p> <strong> Référence : </strong> {{ order.reference }}</p>
+            <p> <strong> Statut : </strong>
+                {% if order.state == 1 %}
+                    Paiement accepté
+                {% elseif order.state == 2 %}
+                    En cours de préparation
+                {% elseif order.state == 3 %}
+                    Envoyée
+                {% endif %}</p>
             <p> <strong>Transporteur choisi : </strong>  {{ order.carrierName }}</p>
 
             <p><strong>Details :</strong></p>
@@ -36,7 +44,7 @@
             {% for product in order.orderDetails %}
             <tr>
                 <th>{{ product.product }}</th>
-                <td>x{{ product.quantity }}</td>
+                <td>x {{ product.quantity }}</td>
                 <td>{{ (product.price/100) |number_format(2,',','') }}€</td>
                 <td>{{ (product.total/100) |number_format(2,',',',') }}€</td>
             </tr>
