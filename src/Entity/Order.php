@@ -78,6 +78,14 @@ class Order
         return $total;
 
     }
+    public function getNumberOfProducts() {
+        $total = null;
+        foreach ($this->getOrderDetails()->getValues() as $product) {
+            $total = $product->getQuantity();
+        }
+        return $total;
+
+    }
     public function getId(): ?int
     {
         return $this->id;
