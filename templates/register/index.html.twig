@@ -12,10 +12,18 @@
     <div class="row pt-2 pb-5 mx-auto">
         <div class="col-md-8 mb-5 pb-5 mx-auto">
             <h1 class="h3 mb-3">S'inscrire</h1>
-            {% if notification %}
-                <div class="alert alert-info">{{ notification }}</div>
-                <hr>
-            {% endif %}
+            {# read and display several types of flash messages #}
+            {% for label, messages in app.flashes(['success', 'warning']) %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label}} alert-dismissible fade show m-3" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+
             <div class="card p-3 mx-auto " style="width:35rem;">
                 {{ form_start(form) }}
                 <div class="form-group ">

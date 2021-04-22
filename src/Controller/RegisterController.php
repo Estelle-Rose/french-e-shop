@@ -31,18 +31,21 @@ class RegisterController extends AbstractController
                 $user->setPassword($password);
                 $em->persist($user);
                 $em->flush();
-                $notification = 'Votre inscription est bien enregistrée. Vous pouvez vous connecter pour accéder à votre compte.';
                 $mail = new MailJet();
                 $content = 'Bonjour '.$user->getFullname().', votre inscription a bien été enregistrée';
                 $mail->send($user->getEmail(), $user->getFullname(),'Bienvenue à la boutique française', $content);
+
+                $this->addFlash('success', 'Votre inscription est bien enregistrée. Vous pouvez vous connecter pour accéder à votre compte.');
+                $this->redirectToRoute('app_login');
             } else {
-                $notification = 'Cette adresse mail est déjà utilisée';
+                $this->addFlash('warning', 'Cette adresse mail est déjà utilisée.');
+
             }
 
         }
         return $this->render('register/index.html.twig', [
-            'form' => $form->createView(),
-            'notification' => $notification
+            'form' => $form->createView()
+
         ]);
     }
 }
